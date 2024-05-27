@@ -10,7 +10,7 @@ public class DeleteBookHandler(BookStoreDbContext dbContext) : ControllerBase
 
 	private readonly BookStoreDbContext _dbContext = dbContext;
 
-	[HttpDelete("/books/{id}")]
+	[HttpDelete("/books/{id:int}")]
 	public async Task<IActionResult> DeleteBook(int id)
 	{
 		var exists = await _dbContext.Books.AnyAsync(m => m.Id == id);

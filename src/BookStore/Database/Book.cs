@@ -21,12 +21,23 @@ public class Book
 		string? publisher = null,
 		string? description = null)
 	{
-		ArgumentException.ThrowIfNullOrEmpty(title, nameof(title));
-		ArgumentException.ThrowIfNullOrEmpty(author, nameof(author));
+		ArgumentException.ThrowIfNullOrWhiteSpace(title, nameof(title));
+		ArgumentException.ThrowIfNullOrWhiteSpace(author, nameof(author));
 
-		if (publisher is { Length: 0 })
-			ThrowForPublisher();
+		title = title.Trim();
+		author = author.Trim();
+		
+		if (publisher is not null)
+		{
+			ArgumentException.ThrowIfNullOrWhiteSpace(publisher);
+			publisher = publisher.Trim();
+		}
 
+		if (description is not null)
+		{
+			description = description.Trim();
+		}
+		
 		return new Book()
 		{
 			Title = title,

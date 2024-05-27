@@ -53,10 +53,25 @@ public class AddBookHandler(BookStoreDbContext dbContext) : ControllerBase
 
 		public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
 		{
+			Title = Title.Trim();
+			Author = Author.Trim();
+			
 			// since Publisher can be null, we need to do this validation manually
-			if (Publisher is { Length: 0 })
+			if (Publisher is not null)
 			{
-				yield return new ValidationResult($"The field {nameof(Publisher)} may not be empty (but it may be null)", [nameof(Publisher)]);
+				if (string.IsNullOrWhiteSpace(Publisher))
+				{
+					yield return new ValidationResult($"The field {nameof(Publisher)} may not be empty (but it may be null)", [nameof(Publisher)]);
+				}
+				else
+				{
+					Publisher = Publisher.Trim();
+				}
+			}
+
+			if (Description is not null)
+			{
+				Description = Description.Trim();
 			}
 		}
 	}

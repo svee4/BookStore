@@ -16,6 +16,7 @@ public class GetBooksHandler(BookStoreDbContext dbContext) : ControllerBase
 	{
 		// in the case of query parameters, empty parameter values bind as null
 		// thus we cannot distinguish between null and an empty string
+		// also, we dont trim these, whitespace can be significant
 
 		var query = _dbContext.Books.AsQueryable();
 
@@ -41,7 +42,7 @@ public class GetBooksHandler(BookStoreDbContext dbContext) : ControllerBase
 		return books;
 	}
 
-	[HttpGet("/books/{id}")]
+	[HttpGet("/books/{id:int}")]
 	public async Task<IActionResult> GetBook(int id)
 	{
 		var book = await _dbContext.Books.Where(m => m.Id == id).Select(m => new BookResponse()
