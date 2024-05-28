@@ -13,13 +13,9 @@ public class DeleteBookHandler(BookStoreDbContext dbContext) : ControllerBase
 	[HttpDelete("/books/{id:int}")]
 	public async Task<IActionResult> DeleteBook(int id)
 	{
-		var exists = await _dbContext.Books.AnyAsync(m => m.Id == id);
-		if (!exists)
-		{
-			return NotFound();
-		}
-
-		_ = await _dbContext.Books.Where(m => m.Id == id).ExecuteDeleteAsync();
-		return NoContent();
+		var affectedCount = await _dbContext.Books.Where(m => m.Id == id).ExecuteDeleteAsync();
+		return affectedCount == 0
+			? NotFound()
+			: NoContent();
 	}
 }
