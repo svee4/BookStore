@@ -47,20 +47,26 @@ public static partial class AddBook
 		CancellationToken cancellationToken
 	)
 	{
+		var title = command.Title.Trim();
+		var author = command.Author.Trim();
+		var year = command.Year; // for consistency
+		var publisher = command.Publisher?.Trim();
+		var description = command.Description?.Trim();
+		
 		if (dbContext.Books.Any(m =>
-			    m.Title == command.Title
-			    && m.Author == command.Author
-			    && m.Year == command.Year))
+			    m.Title == title
+			    && m.Author == author
+			    && m.Year == year))
 		{
 			return new DuplicateResponse();
 		}
 		
 		var book = Book.CreateNew(
-			command.Title,
-			command.Author,
-			command.Year,
-			command.Publisher,
-			command.Description
+			title,
+			author,
+			year,
+			publisher,
+			description
 		);
 		
 		await dbContext.Books.AddAsync(book, cancellationToken);

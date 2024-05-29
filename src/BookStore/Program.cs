@@ -29,3 +29,5 @@ if (app.Environment.IsDevelopment())
 app.MapBookStoreEndpoints();
 
 app.Run();
+
+public partial class Program { } // make Program visible for tests
