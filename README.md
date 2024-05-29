@@ -3,14 +3,20 @@
 This repo contains a sample book store project
 
 ## Structure
-The web api project is structed in a VSA-fashion.
+### src
+Contains the web api project is structed in a VSA-fashion.
 The `Features` folder contains the singular feature, `Books`, where you will find controllers for book-actions.
 The `Infra` folder contains only some startup code for now.
 In the database folder, you will find the also simple EF core database.
 
+### tests
+Contains tests for the api
+
 ### Other files
 - .editorconfig - my personal projects' editorconfig
 - Directory.build.props - my personal projects' Directory.build.props
+- test.ps1 - runs a quick test against the api
+- resetdb.ps1 - removes and recreates the database
 
 ## Commits
 The commit you are looking at is the Immediate.Handlers commit.
