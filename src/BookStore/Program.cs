@@ -1,29 +1,31 @@
+using BookStore;
 using BookStore.Database;
+using BookStore.Infra.Startup;
+using Immediate.Handlers.Shared;
+using Immediate.Validations.Shared;
+
+[assembly: Behaviors(typeof(ValidationBehavior<,>))]
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSqlite<BookStoreDbContext>("Filename=books.db");
 
-builder.Services.AddControllers();
+builder.Services.AddHandlers();
+builder.Services.AddBehaviors();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwagger();
 
+builder.Services.AddProblemDetailsHandler();
 
 var app = builder.Build();
+
+app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
-	app.UseSwaggerUI(options =>
-	{
-		// serve swagger at root
-		options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-		options.RoutePrefix = "";
-	});
 }
 
-//app.UseHttpsRedirection();
-
-app.MapControllers();
+app.MapBookStoreEndpoints();
 
 app.Run();

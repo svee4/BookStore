@@ -15,9 +15,8 @@ In the database folder, you will find the also simple EF core database.
 - Directory.build.props - my personal projects' Directory.build.props
 
 ## Commits
-The commit you are looking at is the initial MVP commit. This commit has the minimal working sample.
-The code includes the bare minimum error handling and features.
-Further commits improve the code.
+The commit you are looking at is the Immediate.Handlers commit.
+The code includes the app implemented with Immediate.Handlers, Immediate.Apis and Immediate.Validations.
 
 ## Running the project
 1. Make sure you have .NET 8 installed
