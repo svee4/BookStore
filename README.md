@@ -1,13 +1,11 @@
 # Book store project
 
-This repo contains a sample book store project for a technical assignment
+This repo contains a sample book store project
 
 ## Structure
 The web api project is structed in a VSA-fashion.
 The `Features` folder contains the singular feature, `Books`, where you will find controllers for book-actions.
-In this commit, the controllers are single top-level files in the feature folder, because they are very simple.
-For more complex features, you would make subfolders for each sub-feature.
-
+The `Infra` folder contains only some startup code for now.
 In the database folder, you will find the also simple EF core database.
 
 ### Other files
