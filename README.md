@@ -17,7 +17,7 @@ In the database folder, you will find the also simple EF core database.
 ## Commits
 The commit you are looking at is the initial MVP commit. This commit has the minimal working sample.
 The code includes the bare minimum error handling and features.
-Further commits improve the code.
+Check out git branches for more stuff.
 
 ## Running the project
 1. Make sure you have .NET 8 installed
