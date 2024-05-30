@@ -9,6 +9,7 @@ namespace IntegrationTests;
 
 public class BookStoreWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram> where TProgram : class
 {
+    
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureServices(services =>

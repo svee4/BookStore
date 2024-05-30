@@ -4,6 +4,7 @@ namespace IntegrationTests;
 
 public partial class BasicTests
 {
+    
     [Fact]
     public async Task DeleteBook_IsSuccess()
     {

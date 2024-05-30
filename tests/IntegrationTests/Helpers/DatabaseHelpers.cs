@@ -10,9 +10,9 @@ public static class DatabaseHelpers
     /// Ensures database migrations are up to date
     /// </summary>
     /// <param name="services"></param>
-    // There has to be a better way to do this but i havent found out about it yet
     public static async Task EnsureMigrations(IServiceProvider services)
     {
+        // There has to be a better way to do this but i haven't found out about it yet
         using var scope = services.CreateScope();
         var scopedServices = scope.ServiceProvider;
         var db = scopedServices.GetRequiredService<BookStoreDbContext>();

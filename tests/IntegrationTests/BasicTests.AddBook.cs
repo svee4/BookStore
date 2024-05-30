@@ -1,14 +1,16 @@
-using System.Net;
 using IntegrationTests.Helpers;
 
 namespace IntegrationTests;
 
 public partial class BasicTests
 {
+    
     public static class AddBookModels
     {
+        // ReSharper disable once ClassNeverInstantiated.Global
         public record Success(int Id);
 
+        // ReSharper disable once ClassNeverInstantiated.Global
         public record Failure(
             string Title,
             int Status,
@@ -24,6 +26,8 @@ public partial class BasicTests
         await DatabaseHelpers.EnsureMigrations(_webApplicationFactory.Services);
         await DatabaseHelpers.ClearBooks(_webApplicationFactory.Services);
 
+        // add book
+        
         var request = new
         {
             title = "A",
@@ -37,13 +41,14 @@ public partial class BasicTests
         var data = await response.Content.ReadFromJsonAsync<AddBookModels.Success>();
 
         response.EnsureSuccessStatusCode();
-
         Assert.NotNull(data);
         Assert.NotEqual(0, data.Id);
 
-        var bookdata = await client.GetFromJsonAsync<GetBooksModels.Success>($"/books/{data.Id}");
-        Assert.NotNull(bookdata);
-        Assert.NotEqual(0, bookdata.Id);
+        // ensure book data is correct
+        
+        var bookData = await client.GetFromJsonAsync<GetBooksModels.Success>($"/books/{data.Id}");
+        Assert.NotNull(bookData);
+        Assert.NotEqual(0, bookData.Id);
         
         var expected = new GetBooksModels.Success(
             data.Id,
@@ -54,7 +59,7 @@ public partial class BasicTests
             request.Description
         );
         
-        Assert.Equal(bookdata, expected);
+        Assert.Equal(bookData, expected);
     }
     
     
@@ -65,6 +70,8 @@ public partial class BasicTests
         await DatabaseHelpers.EnsureMigrations(_webApplicationFactory.Services);
         await DatabaseHelpers.ClearBooks(_webApplicationFactory.Services);
 
+        // add book
+        
         var request = new
         {
             title = "A",
@@ -79,9 +86,11 @@ public partial class BasicTests
         Assert.NotNull(data);
         Assert.NotEqual(0, data.Id);
         
-        var bookdata = await client.GetFromJsonAsync<GetBooksModels.Success>($"/books/{data.Id}");
-        Assert.NotNull(bookdata);
-        Assert.NotEqual(0, bookdata.Id);
+        // ensure data is correct
+        
+        var bookData = await client.GetFromJsonAsync<GetBooksModels.Success>($"/books/{data.Id}");
+        Assert.NotNull(bookData);
+        Assert.NotEqual(0, bookData.Id);
         
         var expected = new GetBooksModels.Success(
             data.Id,
@@ -92,7 +101,7 @@ public partial class BasicTests
             null
         );
         
-        Assert.Equal(bookdata, expected);
+        Assert.Equal(bookData, expected);
     }
     
     [Fact]
@@ -102,6 +111,8 @@ public partial class BasicTests
         await DatabaseHelpers.EnsureMigrations(_webApplicationFactory.Services);
         await DatabaseHelpers.ClearBooks(_webApplicationFactory.Services);
 
+        // add book 
+        
         var request = new
         {
             title = " A ",
@@ -124,9 +135,9 @@ public partial class BasicTests
         Assert.NotNull(data);
         Assert.NotEqual(0, data.Id);
 
-        var bookdata = await client.GetFromJsonAsync<GetBooksModels.Success>($"/books/{data.Id}");
-        Assert.NotNull(bookdata);
-        Assert.NotEqual(0, bookdata.Id);
+        var bookData = await client.GetFromJsonAsync<GetBooksModels.Success>($"/books/{data.Id}");
+        Assert.NotNull(bookData);
+        Assert.NotEqual(0, bookData.Id);
         
         var expected = new GetBooksModels.Success(
             data!.Id,
@@ -137,7 +148,7 @@ public partial class BasicTests
             "D"
         );
         
-        Assert.Equal(bookdata, expected);
+        Assert.Equal(bookData, expected);
     }
     
     [Fact]
@@ -146,7 +157,7 @@ public partial class BasicTests
         var client = _webApplicationFactory.CreateClient();
         await DatabaseHelpers.EnsureMigrations(_webApplicationFactory.Services);
         await DatabaseHelpers.ClearBooks(_webApplicationFactory.Services);
-
+        
         var request = new
         {
             author = "B",
@@ -222,6 +233,7 @@ public partial class BasicTests
         };
 
         {
+            // add first
             var response = await client.PostAsJsonAsync("/books", request);
             var data = await response.Content.ReadFromJsonAsync<AddBookModels.Success>();
 
@@ -231,6 +243,7 @@ public partial class BasicTests
         }
 
         {
+            // add second
             var response = await client.PostAsJsonAsync("/books", request);
             var data = await response.Content.ReadFromJsonAsync<AddBookModels.Failure>();
             

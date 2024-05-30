@@ -6,7 +6,7 @@ namespace IntegrationTests;
 public partial class BasicTests
 {
 
-    static class GetBooksModels
+    public static class GetBooksModels
     {
         public record Success(
             int Id,
@@ -96,14 +96,12 @@ public partial class BasicTests
             var response = await client.GetFromJsonAsync<IList<GetBooksModels.Success>>("/books?author=A1&year=2&publisher=P1");
             Assert.Equal([book1Model], response);
         }
-
         
         {
             _testOutputHelper.WriteLine("non existent");
             var response = await client.GetFromJsonAsync<IList<GetBooksModels.Success>>("/books?author=Z");
             Assert.Equal([], response);
         }
-        
         
         static async Task<int> AddBook<TBook>(HttpClient client, TBook book)
         {
