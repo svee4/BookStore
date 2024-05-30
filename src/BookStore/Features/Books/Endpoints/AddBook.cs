@@ -12,6 +12,7 @@ namespace BookStore.Features.Books.Endpoints;
 public static partial class AddBook
 {
 	
+	// ReSharper disable once ClassNeverInstantiated.Global
 	[Validate]
 	public sealed partial record Command : IValidationTarget<Command>
 	{

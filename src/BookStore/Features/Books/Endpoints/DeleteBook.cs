@@ -11,7 +11,7 @@ namespace BookStore.Features.Books.Endpoints;
 public static partial class DeleteBook
 {
 
-	public sealed record Query
+	public sealed record Command
 	{
 		public required int Id { get; init; }
 	}
@@ -20,12 +20,12 @@ public static partial class DeleteBook
 		result ? TypedResults.NoContent() : TypedResults.NotFound();
 	
 	private static async ValueTask<bool> HandleAsync(
-		Query query,
+		Command command,
 		BookStoreDbContext dbContext,
 		CancellationToken cancellationToken
 	) =>
 		await dbContext.Books
-			.Where(m => m.Id == query.Id)
+			.Where(m => m.Id == command.Id)
 			.ExecuteDeleteAsync(cancellationToken)
 		> 0;
 }

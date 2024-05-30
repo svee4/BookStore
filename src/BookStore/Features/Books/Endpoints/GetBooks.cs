@@ -10,6 +10,7 @@ namespace BookStore.Features.Books.Endpoints;
 [MapGet("/books/")]
 public static partial class GetBooks
 {
+	
 	public sealed record Query
 	{
 		[NotEmpty]

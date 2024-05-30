@@ -4,7 +4,8 @@ using BookStore.Infra.Startup;
 using Immediate.Handlers.Shared;
 using Immediate.Validations.Shared;
 
-[assembly: Behaviors(typeof(ValidationBehavior<,>))]
+// enable Immediate.Validations for Immediate.Handlers
+[assembly: Behaviors(typeof(ValidationBehavior<,>))] 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,4 +31,5 @@ app.MapBookStoreEndpoints();
 
 app.Run();
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public partial class Program { } // make Program visible for tests
