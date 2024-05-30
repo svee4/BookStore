@@ -22,7 +22,7 @@ public static partial class GetBooks
 		public string? Publisher { get; init; }
 	};
 
-	private static async ValueTask<IEnumerable<Book>> HandleAsync(
+	private static async ValueTask<List<Book>> HandleAsync(
 		Query query,
 		BookStoreDbContext dbContext,
 		CancellationToken cancellationToken

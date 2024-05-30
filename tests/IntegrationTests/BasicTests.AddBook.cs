@@ -253,4 +253,27 @@ public partial class BasicTests
             Assert.Equal("A book with the same title, author and year already exists", data.Errors["Model"].Single());
         }
     }
+    
+    [Fact]
+    public async Task AddBook_EmptyPublisher()
+    {
+        var client = _webApplicationFactory.CreateClient();
+        await DatabaseHelpers.EnsureMigrations(_webApplicationFactory.Services);
+        await DatabaseHelpers.ClearBooks(_webApplicationFactory.Services);
+
+        var request = new
+        {
+            title = "A",
+            author = "B",
+            year = 2,
+            publisher = ""
+        };
+        
+        var response = await client.PostAsJsonAsync("/books", request);
+        var data = await response.Content.ReadFromJsonAsync<AddBookModels.Failure>();
+
+        Assert.Equal(400, (int)response.StatusCode);
+        Assert.NotNull(data);
+        Assert.Equal("Property must not be empty.", data.Errors["Publisher"].Single());
+    }
 }
