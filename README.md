@@ -18,9 +18,10 @@ Contains tests for the api
 - test.ps1 - runs a quick test against the api
 - resetdb.ps1 - removes and recreates the database
 
-## Commits
-The commit you are looking at is the Immediate.Handlers commit.
+## Branches
+The branch you are looking at is the Immediate.Handlers branch.
 The code includes the app implemented with Immediate.Handlers, Immediate.Apis and Immediate.Validations.
+For different implementations, check out other branches.
 
 ## Running the project
 1. Make sure you have .NET 8 installed
