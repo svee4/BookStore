@@ -3,8 +3,10 @@ name: dotnet test
 on:
   push:
     branches: [ "main" ]
+    paths: ["src/**", "tests/**"]
   pull_request:
     branches: [ "main" ]
+    paths: ["src/**", "tests/**"]
 
 defaults:
   run:
@@ -12,9 +14,7 @@ defaults:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
