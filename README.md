@@ -19,7 +19,7 @@ Contains tests for the api.
 - `resetdb.ps1` - removes and recreates the database
 
 ## Branches
-The branch you are looking at is the Immediate.Handlers branch.
+You are looking at the main branch, currently implementing ImmediatePlatform libraries.
 The code includes the app implemented with Immediate.Handlers, Immediate.Apis and Immediate.Validations.
 For different implementations, check out other branches.
 
