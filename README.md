@@ -4,9 +4,9 @@ Sample book store project
 
 ## Structure
 ### src
-Contains the web api project is structed in a VSA-fashion.
+Contains the web api project structured in a VSA-fashion.
 The `Features` folder contains the singular feature, `Books`, where you will find controllers for book-actions.
-The `Infra` folder contains only some startup code for now.
+The `Infra` folder contains some startup code and middleware.
 In the database folder, you will find the also simple EF core database models.
 
 ### tests
