@@ -4,9 +4,9 @@ Sample book store project
 
 ## Structure
 ### src
-Contains the web api project is structed in a VSA-fashion.
+Contains the web api project structured in a VSA-fashion.
 The `Features` folder contains the singular feature, `Books`, where you will find controllers for book-actions.
-The `Infra` folder contains only some startup code for now.
+The `Infra` folder contains some startup code and middlewares.
 In the database folder, you will find the also simple EF core database models.
 
 ### tests
@@ -19,7 +19,7 @@ Contains tests for the api.
 - `resetdb.ps1` - removes and recreates the database
 
 ## Branches
-The branch you are looking at is the Immediate.Handlers branch.
+The branch you are looking at is the ImmediatePlatform API branch.
 The code includes the app implemented with Immediate.Handlers, Immediate.Apis and Immediate.Validations.
 For different implementations, check out other branches.
 
