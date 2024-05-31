@@ -3,12 +3,12 @@ using System.Text.Json;
 using Immediate.Validations.Shared;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookStore.Infra.Startup;
+namespace BookStore.Infra.Middleware;
 
-public static class ProblemDetailsHandler
+public static class ProblemDetailsMiddleware
 {
 	
-	public static void Callback(ProblemDetailsContext context)
+	public static void Handle(ProblemDetailsContext context)
 	{
 		ArgumentNullException.ThrowIfNull(context);
 

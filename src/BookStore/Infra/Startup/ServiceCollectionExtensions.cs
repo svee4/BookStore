@@ -1,6 +1,4 @@
-using System.Text.Json;
-using Immediate.Validations.Shared;
-using Microsoft.AspNetCore.Mvc;
+using BookStore.Infra.Middleware;
 
 namespace BookStore.Infra.Startup;
 
@@ -8,7 +6,7 @@ public static class ServiceCollectionExtensions
 {
 	
 	public static void AddProblemDetailsHandler(this IServiceCollection services) => 
-		services.AddProblemDetails(options => options.CustomizeProblemDetails = ProblemDetailsHandler.Callback);
+		services.AddProblemDetails(options => options.CustomizeProblemDetails = ProblemDetailsMiddleware.Handle);
 
 	public static void AddSwagger(this IServiceCollection services)
 	{
