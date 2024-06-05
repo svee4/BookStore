@@ -46,12 +46,5 @@ public class Book
 			Publisher = publisher,
 			Description = description
 		};
-
-		// a throw statement negatively affects the inlining of a method, affecting performance.
-		// by extracting the throw statement into a separate method,
-		// the calling method is more likely to be inlined
-		[DoesNotReturn]
-		static void ThrowForPublisher() =>
-			throw new ArgumentException($"{nameof(publisher)} may not be empty. It may be null", nameof(publisher));
 	}
 }
